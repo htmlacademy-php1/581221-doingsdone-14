@@ -1,7 +1,7 @@
 # Личный проект «Дела в Порядке»
 
 * Студент: [Alexey Artemevskih](https://up.htmlacademy.ru/php/14/user/581221).
-* Наставник: `Неизвестно`.
+* Наставник: [Антон Попов](https://htmlacademy.ru/profile/id78239).
 
 ---
 
