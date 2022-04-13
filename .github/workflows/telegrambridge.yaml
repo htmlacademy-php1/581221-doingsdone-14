@@ -1,0 +1,28 @@
+name: Notifier2
+
+on:
+  issue_comment:
+    types: created
+  issues:
+    types: [opened, edited, pinned, closed, reopened, assigned, labeled]
+  pull_request:
+    types: [opened, closed, edited, ready_for_review, review_requested, reopened]
+  pull_request_review_comment:
+    types: created
+  push:
+
+jobs:
+  build:
+    name: Notifier2
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Notifier2
+      uses: GokulDas027/TelegramBridge@master
+      if: always()
+      with:
+        chat: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        status: ${{ job.status }}
+        event: ${{ github.event_name }}
+        actor: ${{ github.actor }}
