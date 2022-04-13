@@ -1,13 +1,6 @@
 name: Notifier
-
 on: [push]
-#  push:
-#    branches: [ main ]
-#  pull_request:
-#    branches: [ main ]
-
 jobs:
-
   notifyTelegram:
     runs-on: ubuntu-latest
     steps:
