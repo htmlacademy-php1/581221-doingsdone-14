@@ -1,0 +1,23 @@
+name: Notifier
+
+on: [push]
+#  push:
+#    branches: [ main ]
+#  pull_request:
+#    branches: [ main ]
+
+jobs:
+
+  notifyTelegram:
+    runs-on: ubuntu-latest
+    steps:
+    - name: send telegram message
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        format: markdown
+        message: |
+          *Пришло обновление ${{ github.event_name }} от пользователя ${{ github.actor }}*
+          Репозиторий: ${{ github.repository }}
+          Ветка: ${{ github.ref }}
