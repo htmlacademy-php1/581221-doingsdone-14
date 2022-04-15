@@ -2,7 +2,7 @@
 // показывать или нет выполненные задачи
     $show_complete_tasks = rand(0, 1);
     $categories = ['Входящие', 'Учёба', 'Работа', 'Домашние дела', 'Авто'];
-    $taskList = [
+    $task_list = [
         [
             'task' => 'Собеседование в IT компании',
             'date' => '01.12.2019',
@@ -40,6 +40,19 @@
             'status' => false
         ]
     ];
+
+    function get_number(array $list, string $name) {
+        $result = 0;
+
+        foreach ($list as $item) {
+            if ($item['category'] === $name) {
+                $result++;
+            }
+        }
+
+        return $result;
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -81,10 +94,10 @@
 
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
-                        <?php foreach ( $categories as $category): ?>
+                        <?php foreach ($categories as $category): ?>
                             <li class="main-navigation__list-item">
                                 <a class="main-navigation__list-item-link" href="#"><?=$category; ?></a>
-                                <span class="main-navigation__list-item-count">0</span>
+                                <span class="main-navigation__list-item-count"><?php print(get_number($task_list, $category)) ?></span>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -113,14 +126,14 @@
 
                     <label class="checkbox">
                         <!--добавить сюда атрибут "checked", если переменная $show_complete_tasks равна единице-->
-                        <input class="checkbox__input visually-hidden show_completed" type="checkbox" <?php if ( $show_complete_tasks === 1 ): ?>checked<?php endif; ?> >
+                        <input class="checkbox__input visually-hidden show_completed" type="checkbox" <?php if ($show_complete_tasks): ?>checked<?php endif; ?> >
                         <span class="checkbox__text">Показывать выполненные</span>
                     </label>
                 </div>
 
                 <table class="tasks">
-                    <?php foreach ( $taskList as $taskItem ): ?>
-                        <?php if ( $taskItem['status'] && $show_complete_tasks === 0 ) continue; ?>
+                    <?php foreach ($task_list as $taskItem): ?>
+                        <?php if ($taskItem['status'] && $show_complete_tasks === 0) continue; ?>
                         <tr class="tasks__item task <?php if ($taskItem['status']): ?>task--completed<?php endif; ?>">
                             <td class="task__select">
                                 <label class="checkbox task__checkbox">
@@ -152,7 +165,7 @@
                         <td class="task__date"></td>
                     </tr>
                     <!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->
-                    <?php if ( $show_complete_tasks ): ?>
+                    <?php if ($show_complete_tasks): ?>
                         <tr class="tasks__item task task--completed">
                             <td class="task__select">
                                 <label class="checkbox task__checkbox">
