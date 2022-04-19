@@ -41,11 +41,11 @@
         ]
     ];
 
-    function get_number(array $list, string $name) {
+    function get_tasks_amount(array $tasks, string $name) {
         $result = 0;
 
-        foreach ($list as $item) {
-            if ($item['category'] === $name) {
+        foreach ($tasks as $task) {
+            if ($task['category'] === $name) {
                 $result++;
             }
         }
@@ -97,7 +97,7 @@
                         <?php foreach ($categories as $category): ?>
                             <li class="main-navigation__list-item">
                                 <a class="main-navigation__list-item-link" href="#"><?=$category; ?></a>
-                                <span class="main-navigation__list-item-count"><?php print(get_number($task_list, $category)) ?></span>
+                                <span class="main-navigation__list-item-count"><?php print(get_tasks_amount($task_list, $category)) ?></span>
                             </li>
                         <?php endforeach; ?>
                     </ul>
