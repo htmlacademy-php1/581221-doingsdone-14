@@ -14,4 +14,8 @@
 
         return $result;
     };
+
+    function get_remain_hours($date) {
+        return floor((strtotime($date) - time()) / 3600);
+    }
 ?>
