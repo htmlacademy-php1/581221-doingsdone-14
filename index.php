@@ -14,6 +14,10 @@
         'content' => $page_content,
         'title' => 'Дела в порядке - Главная страница'
     ]);
+
+    print($layout);
 ?>
 
-<?=$layout; ?>
+
+
+
