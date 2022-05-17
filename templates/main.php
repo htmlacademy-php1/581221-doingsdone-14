@@ -6,8 +6,8 @@
             <ul class="main-navigation__list">
                 <?php foreach ($categories as $category): ?>
                     <li class="main-navigation__list-item">
-                        <a class="main-navigation__list-item-link" href="#"><?=$category; ?></a>
-                        <span class="main-navigation__list-item-count"><?=get_tasks_amount($task_list, $category); ?></span>
+                        <a class="main-navigation__list-item-link" href="#"><?=$category['name']; ?></a>
+                        <span class="main-navigation__list-item-count"> <?=get_tasks_amount($task_list, $category); ?></span>
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -46,11 +46,11 @@
                 <?php if ($task_item['status'] && $show_complete_tasks === 0) continue; ?>
                 <tr class="tasks__item task
                     <?php if ($task_item['status']): ?>task--completed
-                    <?php elseif ($task_item['date'] !== null && get_remain_hours($task_item['date']) <= 24): ?> task--important <?php endif; ?>">
+                    <?php elseif ($task_item['dt_expire'] !== null && get_remain_hours($task_item['dt_expire']) <= 24): ?> task--important <?php endif; ?>">
                     <td class="task__select">
                         <label class="checkbox task__checkbox">
                             <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1" <?php if ($task_item['status']): ?>checked<?php endif; ?>>
-                            <span class="checkbox__text"><?=$task_item['task']; ?></span>
+                            <span class="checkbox__text"><?=$task_item['name']; ?></span>
                         </label>
                     </td>
 
@@ -58,7 +58,7 @@
                         <a class="download-link" href="#"></a>
                     </td>
 
-                    <td class="task__date"><?=$task_item['date']; ?></td>
+                    <td class="task__date"><?=$task_item['dt_expire']; ?></td>
                 </tr>
             <?php endforeach ?>
 
