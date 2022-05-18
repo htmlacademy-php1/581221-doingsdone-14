@@ -1,10 +1,8 @@
 <?php
-
     require_once('init.php');
     require_once('helpers.php');
-    require_once('data.php');
+    // require_once('data.php');
     require_once('functions.php');
-
 
     $sql = "SELECT id, name FROM projects";
     $result = mysqli_query($link, $sql);
@@ -16,7 +14,14 @@
         $content = include_template('error.php', ['error' => $error]);
     }
 
-    $sql = "SELECT id, name, status, dt_expire, project_id FROM tasks";
+    $project_id = filter_input(INPUT_GET, 'id');
+
+    if ($project_id) {
+        $sql = "SELECT id, name, status, dt_expire, project_id FROM tasks WHERE project_id = $project_id";
+    } else {
+        $sql = "SELECT id, name, status, dt_expire, project_id FROM tasks";
+    }
+
     $result = mysqli_query($link, $sql);
 
     if ($result) {
@@ -29,6 +34,7 @@
     $page_content = include_template('main.php', [
         'task_list' => $task_list,
         'categories' => $categories,
+        'project_id' => $project_id,
         'show_complete_tasks' => $show_complete_tasks
     ]);
 
@@ -38,8 +44,3 @@
     ]);
 
     print($layout);
-?>
-
-
-
-

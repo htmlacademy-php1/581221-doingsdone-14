@@ -5,8 +5,8 @@
         <nav class="main-navigation">
             <ul class="main-navigation__list">
                 <?php foreach ($categories as $category): ?>
-                    <li class="main-navigation__list-item">
-                        <a class="main-navigation__list-item-link" href="#"><?=$category['name']; ?></a>
+                    <li class="main-navigation__list-item <?php if ($category['id'] == $project_id): ?>main-navigation__list-item--active<?php endif; ?>">
+                        <a class="main-navigation__list-item-link" href="index.php?id=<?=$category['id']; ?>"><?=$category['name']; ?></a>
                         <span class="main-navigation__list-item-count"> <?=get_tasks_amount($task_list, $category); ?></span>
                     </li>
                 <?php endforeach; ?>
