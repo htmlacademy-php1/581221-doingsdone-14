@@ -4,10 +4,10 @@
 
         <nav class="main-navigation">
             <ul class="main-navigation__list">
-                <?php foreach ($categories as $category): ?>
-                    <li class="main-navigation__list-item <?php if ($category['id'] == $project_id): ?>main-navigation__list-item--active<?php endif; ?>">
-                        <a class="main-navigation__list-item-link" href="index.php?id=<?=$category['id']; ?>"><?=$category['name']; ?></a>
-                        <span class="main-navigation__list-item-count"> <?=get_tasks_amount($task_list, $category); ?></span>
+                <?php foreach ($projects as $project): ?>
+                    <li class="main-navigation__list-item <?php if ($project['id'] === $project_id): ?>main-navigation__list-item--active<?php endif; ?>">
+                        <a class="main-navigation__list-item-link" href="index.php?id=<?=$project['id']; ?>"><?=$project['name']; ?></a>
+                        <span class="main-navigation__list-item-count"> <?=$project['count(t.project_id)']; ?></span>
                     </li>
                 <?php endforeach; ?>
             </ul>

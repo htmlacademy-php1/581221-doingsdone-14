@@ -7,7 +7,7 @@
         $result = 0;
 
         foreach ($tasks as $task) {
-            if ($task['project_id'] == $category['id']) {
+            if ($task['t.project_id'] === $category['id']) {
                 $result++;
             }
         }
