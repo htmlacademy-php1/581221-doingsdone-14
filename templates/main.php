@@ -56,7 +56,7 @@
                         </td>
 
                         <td class="task__file">
-                            <a class="download-link" href="#"></a>
+                            <a class="download-link" href="<?=$task_item['link']; ?>"></a>
                         </td>
 
                         <td class="task__date"><?=$task_item['dt_expire']; ?></td>

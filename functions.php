@@ -2,7 +2,6 @@
     // показывать или нет выполненные задачи
     $show_complete_tasks = rand(0, 1);
 
-
     function get_tasks_amount(array $tasks, array $category) {
         $result = 0;
 
@@ -13,10 +12,14 @@
         }
 
         return $result;
-    };
+    }
 
     function get_remain_hours($date) {
         return floor((strtotime($date) - time()) / 3600);
+    }
+
+    function show_error(&$content, $error) {
+        $content = include_template('error.php', ['error' => $error]);
     }
 
     function get_projects($link) {
@@ -27,7 +30,6 @@
             $projects = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
             return $projects;
-            print($projects);
         } else {
             $error = mysqli_error($link);
             $content = include_template('error.php', ['error' => $error]);
@@ -36,7 +38,7 @@
 
     function get_tasks($link, $project_id) {
         if ($project_id) {
-            $sql = "SELECT t.id, t.name, t.status, t.dt_expire, p.id FROM tasks t RIGHT JOIN projects p ON t.project_id = p.id WHERE p.id = $project_id";
+            $sql = "SELECT t.id, t.name, t.link, t.status, t.dt_expire, p.id FROM tasks t RIGHT JOIN projects p ON t.project_id = p.id WHERE p.id = $project_id";
             $result = mysqli_query($link, $sql);
 
             if ($result) {
