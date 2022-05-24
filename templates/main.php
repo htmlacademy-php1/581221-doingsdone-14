@@ -59,7 +59,7 @@
                             <a class="download-link" href="<?=$task_item['link']; ?>"></a>
                         </td>
 
-                        <td class="task__date"><?=$task_item['dt_expire']; ?></td>
+                        <td class="task__date"><?=$task_item['dt_expire'] = date('Y-m-d'); ?></td>
                     </tr>
                 <?php endif; ?>
             <?php endforeach ?>

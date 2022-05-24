@@ -11,15 +11,15 @@
     ]);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $required = ['name', 'project'];
-        $rules = [
-            "project" => function($value) use ($projects_id) {
-                return validate_project($value, $projects_id);
-            },
-            "name" => function($value) {
-                return validate_name($value, 5, 200);
-            }
-        ];
+        // $required = ['name', 'project'];
+        // $rules = [
+        //     "project" => function($value) use ($projects_id) {
+        //         return validate_project($value, $projects_id);
+        //     },
+        //     "name" => function($value) {
+        //         return validate_name($value, 5, 200);
+        //     }
+        // ];
 
         $new_task = $_POST;
 
